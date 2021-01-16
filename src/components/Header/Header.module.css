@@ -1,0 +1,27 @@
+header {
+    height: 5em;
+    background-color: #282828;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: solid #E16DDA 1px;
+    overflow: hidden;
+}
+
+header .img {
+    order: -1;
+    display: flex;
+    align-items: center;
+    color: whitesmoke;
+    font-family: 'Potta One', cursive;
+}
+
+header .img span {
+    font-size: 1.5rem;
+    background-image: repeating-linear-gradient(45deg, #E16DDA 0px, #E16DDA 5px, transparent 5px, transparent 10px );
+}
+
+.img > img{
+    width: 4em;
+    height: 4em;
+}

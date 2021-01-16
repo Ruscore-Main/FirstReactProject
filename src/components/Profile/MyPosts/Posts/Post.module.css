@@ -1,0 +1,15 @@
+.item {
+    color: brown;
+}
+
+.itemContent {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+.item img {
+    width: 3em;
+    border-radius: 50%;
+}

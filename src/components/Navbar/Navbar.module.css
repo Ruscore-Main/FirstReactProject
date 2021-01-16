@@ -1,0 +1,24 @@
+nav {
+    padding: 2em;
+    height: 400px;
+    margin-right: 40px;
+    background-color: #282828;
+    line-height: 2em;
+    border-right: solid#E16DDA 1px;
+    border-bottom: solid#E16DDA 1px;
+    border-bottom-right-radius: 50px;
+    margin-top: -1px;
+    display: flex;
+}
+
+nav ul li {
+    display: block;
+}
+
+.item {
+    color: white;
+}
+
+.active {
+    color: #E16DDA;
+}
