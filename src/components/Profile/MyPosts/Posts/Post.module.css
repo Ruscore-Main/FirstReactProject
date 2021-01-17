@@ -11,5 +11,6 @@
 
 .item img {
     width: 3em;
+    margin-right: 1rem;
     border-radius: 50%;
 }
