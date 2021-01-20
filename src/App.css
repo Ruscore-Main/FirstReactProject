@@ -7,7 +7,14 @@
 
 /* Main content */
 
-.content {
+.app-wrapper {
   display: flex;
   max-width: 100%;
+}
+
+.app-wrapper-content {
+  line-height: 1.5em;
+  background-color: turquoise;
+  min-width: 80%;
+  margin: 0 auto;
 }
