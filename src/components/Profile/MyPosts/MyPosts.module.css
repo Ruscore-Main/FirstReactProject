@@ -1,0 +1,9 @@
+.postsBlock {
+    padding: 1em;
+}
+.postsBlock textarea {
+    max-width: 80em;
+    max-height: 30em;
+    min-width: 15em;
+    min-height: 7em;
+}

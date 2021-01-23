@@ -15,7 +15,7 @@ function App() {
           <Navbar />
           <div className='app-wrapper-content'>
             <Route exact path='/profile' component={Profile} />
-            <Route exact path='/dialogs' component={Dialogs} />
+            <Route path='/dialogs' component={Dialogs} />
           </div>
         </div>
       </div>
