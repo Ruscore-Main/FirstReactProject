@@ -6,7 +6,8 @@ import Header from './components/Header/Header.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
 import Profile from './components/Profile/Profile.jsx';
 
-function App() {
+
+function App(props) {
   return (
     <BrowserRouter>
       <div className='container'>
@@ -14,8 +15,8 @@ function App() {
         <div className="app-wrapper">
           <Navbar />
           <div className='app-wrapper-content'>
-            <Route exact path='/profile' component={Profile} />
-            <Route path='/dialogs' component={Dialogs} />
+            <Route exact path='/profile' render={() => <Profile profilePosts={props.state.profilePage.posts} addPost={props.addPost} />} />
+            <Route path='/dialogs' render={() => <Dialogs dialogsData={props.state.messagesPage.dialogsData} messageData={props.state.messagesPage.messageData}/>} />
           </div>
         </div>
       </div>

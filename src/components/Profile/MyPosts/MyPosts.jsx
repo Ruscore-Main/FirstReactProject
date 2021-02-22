@@ -2,20 +2,25 @@ import React from 'react'
 import classes from './MyPosts.module.css'
 import Post from './Posts/Post'
 
-const MyPost = () => {
+const MyPost = (props) => {
+
+    let newPostElement = React.createRef();
+    const addPost = () => {
+        props.addPost(newPostElement.current?.value);
+    }
+
+    let postselements = props.profilePosts.map((el, i) => <Post id = {el.id} message={el.message} likesCount={el.likesCount} key={i}/>)
     return (
         <div className={classes.postsBlock}>
             My posts:
             <div>
                 <div>
-                    <textarea></textarea>
+                    <textarea ref={newPostElement}></textarea>
                 </div>
-                <button>Submit</button>
+                <button onClick={addPost}>Submit</button>
                 </div>
             <div className='posts'>
-                <Post message={'It\'s my first post'}/>
-                <Post message='Salo only dlya UKRAINE'/>
-                <Post message='Хочу чтобы тут было пусто'/>
+                {postselements}
             </div>
         </div>
     );
