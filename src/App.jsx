@@ -1,4 +1,3 @@
-import { Profiler } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
 import Dialogs from './components/Dialogs/Dialogs';
@@ -15,7 +14,7 @@ function App(props) {
         <div className="app-wrapper">
           <Navbar />
           <div className='app-wrapper-content'>
-            <Route exact path='/profile' render={() => <Profile profilePosts={props.state.profilePage.posts} addPost={props.addPost} />} />
+            <Route exact path='/profile' render={() => <Profile profilePosts={props.state.profilePage.posts} newPostText={props.state.profilePage.newPostText} dispatch={props.dispatch}/>} />
             <Route path='/dialogs' render={() => <Dialogs dialogsData={props.state.messagesPage.dialogsData} messageData={props.state.messagesPage.messageData}/>} />
           </div>
         </div>
