@@ -1,7 +1,9 @@
 // types of actions 
 const
     ADD_POST = 'ADD-POST',
-    UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+    UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT',
+    UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY',
+    SEND_MESSAGE = 'SEND-MESSAGE';
 
 
 
@@ -29,7 +31,9 @@ let store = {
                 {id:2, name:'Cheburec'},
                 {id:3, name:'Uzbek'},
                 {id:4, name:'CatBoris'}
-            ]
+            ],
+
+            newMessageText: ''
         }
         
     },
@@ -76,6 +80,20 @@ let store = {
                 this._rerenderEntireTree(this._state);
                 break;
             }
+
+            case UPDATE_NEW_MESSAGE_BODY: {
+                this._state.messagesPage.newMessageText = action.newText;
+                this._rerenderEntireTree(this._state);
+                break;
+            }
+
+            case SEND_MESSAGE: {
+                let newMessage = {id: 5, message: this._state.messagesPage.newMessageText}
+                this._state.messagesPage.newMessageText = '';
+                this._state.messagesPage.messageData.push(newMessage);
+                this._rerenderEntireTree(this._state);
+                break;
+            }
             
         }
 
@@ -90,9 +108,12 @@ export const addPostActionCreator = () => {
     }
 }
 
-export const updateNewPostTextActionCreator = newText => {
-    return {type: UPDATE_NEW_POST_TEXT, newText: newText}
-}
+export const updateNewPostTextActionCreator = newText => ({type: UPDATE_NEW_POST_TEXT, newText: newText})
+
+
+export const updateNewMessageTextActionCreator = newText => ({type: UPDATE_NEW_MESSAGE_BODY, newText: newText});
+
+export const sendMessageActionCreator = () => ({type: SEND_MESSAGE});
 
 export default store;
 window.store = store;

@@ -5,6 +5,7 @@
 /* left side */
 .dialogItems {
     flex-grow: 1;
+    
 }
 
 .dialogItem {
@@ -28,6 +29,7 @@ a {
     margin: 0 0 0 8em;
     padding-left: 2em;
     border-left: 1px solid gray;
+    max-height: 80%;
 } 
 
 .message {
