@@ -7,6 +7,7 @@ import Profile from './components/Profile/Profile.jsx';
 
 
 function App(props) {
+  debugger;
   return (
     <BrowserRouter>
       <div className='container'>
