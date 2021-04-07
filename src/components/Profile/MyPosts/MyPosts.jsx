@@ -5,7 +5,6 @@ import Post from './Posts/Post'
 
 
 const MyPost = (props) => {
-
     let newPostElement = React.createRef();
     const addPost = () => {
         props.dispatch(addPostActionCreator());

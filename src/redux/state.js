@@ -1,11 +1,14 @@
-// types of actions 
+import profileReducer from './profile-reducer';
+import dialogsReducer from './dialogs-reducer';
+import sidebarReducer from './sidebar-reducer';
+
+
+//types of action
 const
     ADD_POST = 'ADD-POST',
     UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT',
     UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY',
     SEND_MESSAGE = 'SEND-MESSAGE';
-
-
 
 let store = {
     _state: {
@@ -34,7 +37,9 @@ let store = {
             ],
 
             newMessageText: ''
-        }
+        },
+
+        sidebar: {}
         
     },
     getState() {
@@ -61,41 +66,11 @@ let store = {
         this._rerenderEntireTree = observer
     },
 
-    dispatch (action) { // {type: 'ADD-POST'} - приходит объект
-        switch (action.type) {
-            case ADD_POST : {
-                let newPost = {
-                    id: 5,
-                    message: this._state.profilePage.newPostText,
-                    likesCount: 12
-                }
-                this._state.profilePage.posts.push(newPost)
-                this._state.profilePage.newPostText = '';
-                this._rerenderEntireTree(this._state);
-                break;
-            }
-
-            case UPDATE_NEW_POST_TEXT: {
-                this._state.profilePage.newPostText = action.newText;
-                this._rerenderEntireTree(this._state);
-                break;
-            }
-
-            case UPDATE_NEW_MESSAGE_BODY: {
-                this._state.messagesPage.newMessageText = action.newText;
-                this._rerenderEntireTree(this._state);
-                break;
-            }
-
-            case SEND_MESSAGE: {
-                let newMessage = {id: 5, message: this._state.messagesPage.newMessageText}
-                this._state.messagesPage.newMessageText = '';
-                this._state.messagesPage.messageData.push(newMessage);
-                this._rerenderEntireTree(this._state);
-                break;
-            }
-            
-        }
+    dispatch (action) { // action - объект, например {type: 'ADD-NEW-POST-TEXT'}
+        this._state.profilePage = profileReducer(action, this._state.profilePage);
+        this._state.messagesPage = dialogsReducer(action, this._state.messagesPage)
+        this._state.sidebar = sidebarReducer(action, this._state.sidebar);
+        this._rerenderEntireTree(this._state);
 
     }
 
