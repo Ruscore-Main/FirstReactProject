@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Dialogs.module.css'
 import { NavLink } from 'react-router-dom'
-import { updateNewMessageTextActionCreator, sendMessageActionCreator } from '../../redux/store';
+import { updateNewMessageTextActionCreator, sendMessageActionCreator } from '../../redux/dialogs-reducer';
 
 
 
@@ -22,11 +22,12 @@ const Message = props => {
 }
 
 const Dialogs = props => {
-    const updateNewMessageText = e => props.dispatch(updateNewMessageTextActionCreator(e.target.value));
-    const sendMessage = e => props.dispatch(sendMessageActionCreator());
+    let state = props.store.getState().dialogsPage;
+    const updateNewMessageText = e => props.store.dispatch(updateNewMessageTextActionCreator(e.target.value));
+    const sendMessage = e => props.store.dispatch(sendMessageActionCreator());
 
-    let dialogsElements = props.dialogsData.map((el, i) => <DialogItem id={el.id} name={el.name} key={i} />)
-    let messageElements = props.messageData.map((el, i) => <Message id={el.id} message={el.message} key={i}/>)
+    let dialogsElements = state.dialogsData.map((el, i) => <DialogItem id={el.id} name={el.name} key={i} />)
+    let messageElements = state.messageData.map((el, i) => <Message id={el.id} message={el.message} key={i}/>)
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogItems}>
@@ -34,7 +35,7 @@ const Dialogs = props => {
             </div>
             <div className={classes.currentDialog}>
                 {messageElements}
-                <textarea onChange={updateNewMessageText} cols="40" rows="7" value={props.newMessageText}/>
+                <textarea onChange={updateNewMessageText} cols="40" rows="7" value={state.newMessageText}/>
                 <button onClick={sendMessage}>Отправить</button>
             </div>
         </div>
