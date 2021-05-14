@@ -1,13 +1,13 @@
 import React from 'react';
 import classes from './ProfileInfo.module.css';
 
-const ProfileInfo = () => {
+const ProfileInfo = props => {
     return (
         <div>
-            <img src="https://png.pngtree.com/thumb_back/fw800/background/20190827/pngtree-retro-futuristic-1980s-style-mountain-landscape-background-image_302222.jpg" alt="" />
+            <img src={props.profile?.photos.large || "https://png.pngtree.com/thumb_back/fw800/background/20190827/pngtree-retro-futuristic-1980s-style-mountain-landscape-background-image_302222.jpg"} alt="" />
             <div className={classes.descriptionBlock}>
-                <p>Main contentProfile</p>
-                <p>after main content</p>
+                <p>{props.profile?.fullName}</p>
+                <p>{props.profile?.aboutMe}</p>
             </div>
         </div>
     )
