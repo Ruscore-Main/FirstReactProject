@@ -6,22 +6,26 @@ import Navbar from './components/Navbar/Navbar.jsx';
 import ProfileContainer from './components/Profile/ProfileContainer.jsx';
 import React from 'react';
 import UsersContainer from './components/Users/UsersContainer';
+import HeaderContainer from './components/Header/HeaderContainer';
 
 
 const App = props => {
   return (
     <div className='container'>
-      <Header />
+      <HeaderContainer />
       <div className="app-wrapper">
         <Navbar />
         <div className='app-wrapper-content'>
           <Route path='/dialogs' render={() => <DialogsContainer/>} />
-          <Route path='/profile' render={() => <ProfileContainer />} />
+          <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
           <Route path='/users' render={()=><UsersContainer />}/>
         </div>
       </div>
     </div>
   );
 }
+
+
+
 
 export default App;

@@ -5,6 +5,7 @@ import userPhoto from './../../assets/images/user.jpg';
 import loader from './../../assets/images/loader.svg';
 import Users from './Users';
 import Loader from '../Loader/Loader';
+import { usersAPI } from '../../api/api';
 
 
 
@@ -12,28 +13,23 @@ class UsersAPIComponent extends Component {
 
     componentDidMount() {
         this.props.toggleIsFetching(true);
-        this.getUsers();
-    }
-
-    getUsers = () => {
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-            .then(response => {
-                this.props.toggleIsFetching(false);
-                this.props.setTotalUsersCount(response.data.totalCount);
-                this.props.setUsers(response.data.items);
-            })
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+            this.props.toggleIsFetching(false);
+            this.props.setTotalUsersCount(data.totalCount);
+            this.props.setUsers(data.items);
+        });
     }
 
     onPageChanged = page => {
         this.props.setCurrentPage(page);
         this.props.toggleIsFetching(true);
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
-            .then(response => {
-                this.props.toggleIsFetching(false);
-                this.props.setUsers(response.data.items)
-            })
+
+        usersAPI.getUsers(page, this.props.pageSize)
+        .then(data => {
+            this.props.toggleIsFetching(false);
+            this.props.setUsers(data.items)
+        })
+
     }
 
     render() {
