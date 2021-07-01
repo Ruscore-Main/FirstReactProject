@@ -1,4 +1,5 @@
 import * as axios from 'axios';
+import { unfollowAC } from '../redux/users-reducer';
 
 const 
     BASEURL = 'https://social-network.samuraijs.com/api/1.0/';
@@ -17,6 +18,24 @@ export const usersAPI = {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`, {
                 withCredentials: true
             }).then(({data}) => data)
-    } 
+    },
+
+    follow (u) {
+        return instance.delete(`follow/${u.id}`)
+    },
+
+    unfollow (u) {
+        return instance.post(`follow/${u.id}`)
+    },
+
+    getProfile (userId) {
+        return instance.get(`profile/${userId}`)
+    },
     
+}
+
+export const authAPI = {
+    getMe () {
+        return instance.get(`auth/me`).then(({data}) => data)
+    }
 }

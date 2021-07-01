@@ -12,24 +12,12 @@ import { usersAPI } from '../../api/api';
 class UsersAPIComponent extends Component {
 
     componentDidMount() {
-        this.props.toggleIsFetching(true);
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-            this.props.toggleIsFetching(false);
-            this.props.setTotalUsersCount(data.totalCount);
-            this.props.setUsers(data.items);
-        });
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
 
     onPageChanged = page => {
         this.props.setCurrentPage(page);
-        this.props.toggleIsFetching(true);
-
-        usersAPI.getUsers(page, this.props.pageSize)
-        .then(data => {
-            this.props.toggleIsFetching(false);
-            this.props.setUsers(data.items)
-        })
-
+        this.props.getUsers(page, this.props.pageSize)
     }
 
     render() {
